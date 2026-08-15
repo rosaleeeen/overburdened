@@ -1,6 +1,5 @@
-# 👷 overburden  ⛏⛰︎ *.ೃ࿔⋆ ❯❯❯❯ ⛃:･°
-earned value management dashboard for capital mining projects
-> a simulated Power BI project modelling **earned value management (EVM)** reporting for a capital mining project. 
+# overburden ⛏⛰︎
+> simulated POWER BI project modelling **earned value management (EVM)** reporting for a capital mining project.
 
 **dashboard demo**
 
@@ -39,6 +38,9 @@ star schema with one fact table and two dimension tables:
 - **Work Packages** (dimension): `Work Package Code`, `Work Package Name`, `Total Budget`, `Cost Performance Target`, `Schedule Performance Target`.
 <img width="1858" height="846" alt="image" src="https://github.com/user-attachments/assets/57a1ec06-367f-4a0e-a32d-4e5336c94a6c" />
 
+**additional data (not yet visualised)**: 
+`data/project_months.csv` contains a normalized monthly weight curve (the phasing profile used to distribute each work package's budget across the 24-month schedule, peaking at months 12-13). 
+> included as supporting data but not currently connected to dashboard; natural next step is to build a reforecasting or what-if scenario, applying an alternate phasing curve to a work package's total budget.
 
 ## key DAX measures
 ```dax
@@ -69,30 +71,15 @@ mining-evm-dashboard/
 ├── README.md
 ├── sql/
 │   └── generate_cost_data.sql
-├── pbix/
-│   └── mining-evm-dashboard.pbix
-└── screenshots/
-    ├── dashboard-desktop.png
-    └── dashboard-mobile.png
+├── data/
+│   └── work_packages.csv
+│   └── project_months.csv
+│   └── evm_data.csv
+└── pbix/
+    └── mining-evm-dashboard.pbix
 ```
 
 
 ## files
-- **[SQL script](sql/generate_cost_data.sql)** — generates the simulated raw dataset
-- **[.pbix file](pbix/mining-evm-dashboard.pbix)** — full Power BI model, DAX measures, and report (open in Power BI Desktop)
-
-⣿⣿⣿⣿⣿⣟⠛⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣷⣦⣀⠀⠀⠈⠙⢿⣿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀⠀⠸⣧⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣦⡀⠈⠛⠛⢿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⣹⣿⣦⡀⠀⠀⢻⣿⣷⠀⢠⣿⣿⡇⠀⠀⠀⣿
-⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀⣠⣾⣿⣿⣿⣷⣄⠀⠈⣿⣿⠀⣾⣿⣿⣿⠀⠀⠀⣿
-⣿⣿⣿⣿⣿⠟⠁⠀⣠⣾⣿⣿⡟⠙⠻⣿⣿⣧⡀⢸⣿⣾⣿⣿⣿⣿⡆⠀⠀⣿
-⣿⣿⣿⡟⠁⠀⣠⣾⣿⣿⣿⣿⣶⣦⣤⣤⣭⣿⣷⣼⣿⣿⣿⠋⠉⠁⠀⠀⠀⣿
-⣿⡿⠋⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⣿
-⣿⣿⣦⣾⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⢸⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠼⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⣿
-⣿⣿⣿⣿⠛⠛⠻⠿⢿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠉⠛⢻⣿⣿⣿⠟⠀⠀⠀⣿
-⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡏⠀⠀⠀⠀⣿
-⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠂⠀⠀⠀⣿
-⣿⣿⣿⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣿
+- **[SQL script](sql/generate_cost_data.sql)** — generates the simulated raw dataset.
+- **[.pbix file](pbix/mining-evm-dashboard.pbix)** — full Power BI model, DAX measures, and report (open in Power BI Desktop).
